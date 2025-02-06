@@ -1,0 +1,21 @@
+name: Docs update
+
+on:
+  pull_request:
+    types:
+      - closed
+    paths:
+      - 'docs/**'
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Echo Event
+      env:
+        EVENT_CONTEXT: ${{ toJSON(github.event) }}
+      run: |
+        echo $EVENT_CONTEXT
